@@ -1,4 +1,4 @@
-class Personaje {
+export class Personaje {
   nombre;
   familia;
   edad;

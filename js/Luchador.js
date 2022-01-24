@@ -1,4 +1,6 @@
-class Luchador extends Personaje {
+import { Personaje } from "./js/Personaje.js";
+
+export class Luchador extends Personaje {
   arma;
   destreza;
 
