@@ -7,6 +7,5 @@ const tarj = new TarjetaRey(
   personajes[0].nombre,
   personajes[0].familia,
   personajes[0].edad,
-  personajes[0].anyosReinado,
-  "./img/joffrey.jpg"
+  personajes[0].anyosReinado
 );
