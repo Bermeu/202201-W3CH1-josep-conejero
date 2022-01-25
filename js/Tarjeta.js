@@ -1,7 +1,15 @@
 export class Tarjeta {
   elemento;
+  nombre;
+  familia;
+  edad;
+  vivo = true;
+  serie = "Juego de Tronos";
 
-  constructor() {
+  constructor(nombrePersonaje, familiaPersonaje, edadPersonaje) {
+    this.nombre = nombrePersonaje;
+    this.familia = familiaPerso;
+    this.edad = edadPersonaje;
     this.elemento = document.createElement("div");
     this.elemento.innerHTML = `
      <div class="app container">
@@ -10,18 +18,19 @@ export class Tarjeta {
           <div class="card character__card">
             <img
               src="img/no-one.jpg"
-              alt="Nombre y familia del personaje"
+              alt="${this.nombre} de la familia ${this.familia}"
               class="character__picture card-img-top"
             />
             <div class="card-body">
-              <h2 class="character__name card-title h4">Nombre y familia</h2>
+              <h2 class="character__name card-title h4">${
+                this.nombre
+              } de la familia ${this.familia}</h2>
               <div class="character__info">
                 <ul class="list-unstyled">
-                  <li>Edad: X años</li>
+                  <li>Edad: ${this.edad} años</li>
                   <li>
                     Estado:
-                    <i class="fas fa-thumbs-down"></i>
-                    <i class="fas fa-thumbs-up"></i>
+                    ${actualizarIconoEstado(estado)}
                   </li>
                 </ul>
               </div>
@@ -50,7 +59,7 @@ export class Tarjeta {
       <img
         class="comunications__picture"
         src="img/no-one.jpg"
-        alt="Nombre y familia del que habla"
+        alt="${this.nombre} de la familia ${this.familia}"
       />
     </div>
     
@@ -61,6 +70,21 @@ export class Tarjeta {
     /* crearAppContainer();
     crearComunications();
     crearUlCharactersList(); */
+  }
+
+  comunicar() {
+    return `${this.nombre} dice: `;
+  }
+
+  muere() {
+    this.vivo = false;
+    this.actualizarIconoEstado(this.vivo);
+  }
+
+  actualizarIconoEstado(estado) {
+    return estado
+      ? '<i class="fas fa-thumbs-up"></i>'
+      : '<i class="fas fa-thumbs-downp"></i>';
   }
 
   crearAppContainer() {
