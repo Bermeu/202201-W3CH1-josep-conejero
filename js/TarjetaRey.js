@@ -4,9 +4,13 @@ export class TarjetaRey extends Tarjeta {
   anyosReinado;
   elemento;
 
-  constructor(nombreRey, familiaRey, edadRey, anyosReinadoRey) {
-    super(nombreRey, familiaRey, edadRey);
+  constructor(nombreRey, familiaRey, edadRey, anyosReinadoRey, rutaFoto) {
+    super(nombreRey, familiaRey, edadRey, rutaFoto);
     this.anyosReinado = anyosReinadoRey;
+    this.generarHTML();
+  }
+
+  generarHTML() {
     this.elemento = document.createElement("li");
     this.elemento.innerHTML = `Años de reinado: ${anyosReinadoRey}`;
     document

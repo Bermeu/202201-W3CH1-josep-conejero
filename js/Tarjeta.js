@@ -3,13 +3,15 @@ export class Tarjeta {
   nombre;
   familia;
   edad;
+  rutaFoto;
   vivo = true;
   serie = "Juego de Tronos";
 
-  constructor(nombrePersonaje, familiaPersonaje, edadPersonaje) {
+  constructor(nombrePersonaje, familiaPersonaje, edadPersonaje, rutaFoto) {
     this.nombre = nombrePersonaje;
     this.familia = familiaPersonaje;
     this.edad = edadPersonaje;
+    this.rutaFoto = rutaFoto;
 
     this.elemento = document.createElement("div");
     this.elemento.innerHTML = `
@@ -18,7 +20,7 @@ export class Tarjeta {
         <li class="character col">
           <div class="card character__card">
             <img
-              src="img/no-one.jpg"
+              src=${this.rutaFoto}
               alt="${this.nombre} ${this.familia}"
               class="character__picture card-img-top"
             />
