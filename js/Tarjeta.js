@@ -1,135 +1,107 @@
 export class Tarjeta {
   elemento;
+  elementoButtonHabla;
+  elementoButtonMuere;
+  nombre;
+  familia;
+  edad;
+  elementoFoto;
 
-  constructor() {
+  vivo = true;
+  serie = "Juego de Tronos";
+
+  constructor(nombrePersonaje, familiaPersonaje, edadPersonaje) {
+    this.nombre = nombrePersonaje;
+    this.familia = familiaPersonaje;
+    this.edad = edadPersonaje;
+
+    this.generarHTMLGeneral();
+    this.generarHTMLButtons();
+  }
+
+  generarHTMLGeneral() {
     this.elemento = document.createElement("div");
     this.elemento.innerHTML = `
-     <div class="app container">
-      <ul class="characters-list row list-unstyled">
-        <li class="character col">
-          <div class="card character__card">
-            <img
-              src="img/no-one.jpg"
-              alt="Nombre y familia del personaje"
-              class="character__picture card-img-top"
-            />
-            <div class="card-body">
-              <h2 class="character__name card-title h4">Nombre y familia</h2>
-              <div class="character__info">
-                <ul class="list-unstyled">
-                  <li>Edad: X años</li>
-                  <li>
-                    Estado:
-                    <i class="fas fa-thumbs-down"></i>
-                    <i class="fas fa-thumbs-up"></i>
-                  </li>
-                </ul>
-              </div>
-              <div class="character__overlay">
-                <ul class="list-unstyled">
-                  <li>Años de reinado: X</li>
-                  <li>Arma: XXX</li>
-                  <li>Destreza: X</li>
-                  <li>Peloteo: X</li>
-                  <li>Asesora a: X</li>
-                  <li>Sirve a: X</li>
-                </ul>
-                <div class="character__actions">
-                  <button class="character__action btn">habla</button>
-                  <button class="character__action btn">muere</button>
+          <div class="app container">
+            <ul class="characters-list row list-unstyled">
+              <li class="character col">
+                <div class="card character__card">
+                  <img
+                    src="img/${this.nombre.toLowerCase()}.jpg"
+                    alt="${this.nombre} ${this.familia}"
+                    class="character__picture card-img-top"
+                  />
+                  <div class="card-body">
+                    <h2 class="character__name card-title h4">${this.nombre} ${
+      this.familia
+    }
+            </h2>
+                    <div class="character__info">
+                      <ul class="list-unstyled">
+                        <li>Edad: ${this.edad} años</li>
+                        <li>
+                          Estado:
+                          ${this.actualizarIconoEstado(this.vivo)}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="character__overlay">
+                      <ul class="list-unstyled">
+                      </ul>
+                      <div class="character__actions">
+                      </div>
+                    </div>
+                  </div>
+                  <i class="emoji"></i>
                 </div>
-              </div>
-            </div>
-            <i class="emoji"></i>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </div>
-    <div class="comunications">
-      <p class="comunications__text display-1">Una frase que dice alguien</p>
-      <img
-        class="comunications__picture"
-        src="img/no-one.jpg"
-        alt="Nombre y familia del que habla"
-      />
-    </div>
-    
-    
-    `;
-    document.querySelector("body").appendChild(this.elemento);
-
-    /* crearAppContainer();
-    crearComunications();
-    crearUlCharactersList(); */
-  }
-
-  crearAppContainer() {
-    this.elemento = document.createElement("div");
-    this.elemento.className = "app container";
+          <div class="comunications">
+            <p class="comunications__text display-1">Una frase que dice alguien</p>
+            <img
+              class="comunications__picture"
+              src="img/no-one.jpg"
+              alt="${this.nombre} ${this.familia}"
+            />
+          </div>`;
     document.querySelector("body").appendChild(this.elemento);
   }
 
-  crearUlCharactersList() {
-    this.elemento = document.createElement("ul");
-    this.elemento.className = "characters-list row list-unstyled";
-    document.querySelector("app container").appendChild(this.elemento);
+  generarHTMLButtons() {
+    this.elementoButtonHabla = document.createElement("button");
+    this.elementoButtonHabla.textContent = "habla";
+    this.elementoButtonHabla.className = "character__action btn";
+    document
+      .querySelector(".character__actions")
+      .appendChild(this.elementoButtonHabla);
+
+    this.elementoButtonMuere = document.createElement("button");
+    this.elementoButtonMuere.textContent = "muere";
+    this.elementoButtonMuere.className = "character__action btn";
+    document
+      .querySelector(".character__actions")
+      .appendChild(this.elementoButtonMuere);
+    this.elementoButtonMuere.addEventListener("click", this.muere());
   }
 
-  crearComunications() {
-    this.elemento = document.createElement("div");
-    this.elemento.className = "comunications";
-    document.querySelector("body").appendChild(this.elemento);
+  comunicar() {
+    return `${this.nombre} dice: `;
+  }
+
+  muere() {
+    this.vivo = false;
+    this.actualizarIconoEstado(this.vivo);
+    this.elementoFoto = document.querySelector(
+      ".character__picture .card-img-top"
+    );
+    // para que no falle aquí habría que crear la img con la foto como se han creado los botones
+    this.elementoFoto.className = "character__picture card-img-top volteada";
+  }
+
+  actualizarIconoEstado(estado) {
+    return estado
+      ? '<i class="fas fa-thumbs-up"></i>'
+      : '<i class="fas fa-thumbs-downp"></i>';
   }
 }
-
-/* 
-    <div class="app container">
-      <ul class="characters-list row list-unstyled">
-        <li class="character col">
-          <div class="card character__card">
-            <img
-              src="img/no-one.jpg"
-              alt="Nombre y familia del personaje"
-              class="character__picture card-img-top"
-            />
-            <div class="card-body">
-              <h2 class="character__name card-title h4">Nombre y familia</h2>
-              <div class="character__info">
-                <ul class="list-unstyled">
-                  <li>Edad: X años</li>
-                  <li>
-                    Estado:
-                    <i class="fas fa-thumbs-down"></i>
-                    <i class="fas fa-thumbs-up"></i>
-                  </li>
-                </ul>
-              </div>
-              <div class="character__overlay">
-                <ul class="list-unstyled">
-                  <li>Años de reinado: X</li>
-                  <li>Arma: XXX</li>
-                  <li>Destreza: X</li>
-                  <li>Peloteo: X</li>
-                  <li>Asesora a: X</li>
-                  <li>Sirve a: X</li>
-                </ul>
-                <div class="character__actions">
-                  <button class="character__action btn">habla</button>
-                  <button class="character__action btn">muere</button>
-                </div>
-              </div>
-            </div>
-            <i class="emoji"></i>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="comunications">
-      <p class="comunications__text display-1">Una frase que dice alguien</p>
-      <img
-        class="comunications__picture"
-        src="img/no-one.jpg"
-        alt="Nombre y familia del que habla"
-      />
-    </div>
-*/

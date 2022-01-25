@@ -96,3 +96,7 @@ body {
   right: 5px;
   top: 5px;
 }
+
+.volteada {
+  transform: rotate(180deg);
+}
