@@ -5,6 +5,7 @@ export class Tarjeta {
   nombre;
   familia;
   edad;
+  elementoFoto;
 
   vivo = true;
   serie = "Juego de Tronos";
@@ -72,15 +73,16 @@ export class Tarjeta {
     this.elementoButtonHabla.textContent = "habla";
     this.elementoButtonHabla.className = "character__action btn";
     document
-      .querySelector("character__actions")
+      .querySelector(".character__actions")
       .appendChild(this.elementoButtonHabla);
 
     this.elementoButtonMuere = document.createElement("button");
     this.elementoButtonMuere.textContent = "muere";
-    this.elementoButtonHabla.className = "character__action btn";
+    this.elementoButtonMuere.className = "character__action btn";
     document
-      .querySelector("character__actions")
+      .querySelector(".character__actions")
       .appendChild(this.elementoButtonMuere);
+    this.elementoButtonMuere.addEventListener("click", this.muere());
   }
 
   comunicar() {
@@ -90,6 +92,11 @@ export class Tarjeta {
   muere() {
     this.vivo = false;
     this.actualizarIconoEstado(this.vivo);
+    this.elementoFoto = document.querySelector(
+      ".character__picture .card-img-top"
+    );
+    // para que no falle aquí habría que crear la img con la foto como se han creado los botones
+    this.elementoFoto.className = "character__picture card-img-top volteada";
   }
 
   actualizarIconoEstado(estado) {
