@@ -38,12 +38,6 @@ export class Tarjeta {
               </div>
               <div class="character__overlay">
                 <ul class="list-unstyled">
-                  <li>Años de reinado: X</li>
-                  <li>Arma: XXX</li>
-                  <li>Destreza: X</li>
-                  <li>Peloteo: X</li>
-                  <li>Asesora a: X</li>
-                  <li>Sirve a: X</li>
                 </ul>
                 <div class="character__actions">
                   <button class="character__action btn">habla</button>
