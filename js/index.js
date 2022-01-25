@@ -1,4 +1,10 @@
 import { personajes } from "./personajes.js";
 import { Tarjeta } from "./Tarjeta.js";
 
-const tarj = new Tarjeta();
+//const tarj = new Tarjeta(""nombrePersonaje"", familiaPersonaje, edadPersonaje);
+
+const tarj = new TarjetaRey(
+  personajes[0].nombre,
+  personajes[0].familia,
+  personajes[0].edad
+);

@@ -8,8 +8,9 @@ export class Tarjeta {
 
   constructor(nombrePersonaje, familiaPersonaje, edadPersonaje) {
     this.nombre = nombrePersonaje;
-    this.familia = familiaPerso;
+    this.familia = familiaPersonaje;
     this.edad = edadPersonaje;
+
     this.elemento = document.createElement("div");
     this.elemento.innerHTML = `
      <div class="app container">
@@ -18,19 +19,20 @@ export class Tarjeta {
           <div class="card character__card">
             <img
               src="img/no-one.jpg"
-              alt="${this.nombre} de la familia ${this.familia}"
+              alt="${this.nombre} ${this.familia}"
               class="character__picture card-img-top"
             />
             <div class="card-body">
-              <h2 class="character__name card-title h4">${
-                this.nombre
-              } de la familia ${this.familia}</h2>
+              <h2 class="character__name card-title h4">${this.nombre} ${
+      this.familia
+    }
+      </h2>
               <div class="character__info">
                 <ul class="list-unstyled">
                   <li>Edad: ${this.edad} años</li>
                   <li>
                     Estado:
-                    ${actualizarIconoEstado(estado)}
+                    ${this.actualizarIconoEstado(this.vivo)}
                   </li>
                 </ul>
               </div>
@@ -59,7 +61,7 @@ export class Tarjeta {
       <img
         class="comunications__picture"
         src="img/no-one.jpg"
-        alt="${this.nombre} de la familia ${this.familia}"
+        alt="${this.nombre} ${this.familia}"
       />
     </div>
     
