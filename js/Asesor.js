@@ -1,4 +1,4 @@
-import { Personaje } from "./js/Personaje.js";
+import { Personaje } from "./Personaje.js";
 
 export class Asesor extends Personaje {
   asesorado;
